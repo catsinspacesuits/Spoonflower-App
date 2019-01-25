@@ -1,0 +1,13 @@
+<main class="container">
+<h1>My Favourites</h1>
+<h2 class="notice"><%= notice %></h2>
+<p><%= link_to 'Back to Search', new_design_path %></p>
+<% @designs.each do |design| %>
+  <div class="design">
+    <h2 class="design_name"><%= design['name'] %></h2>
+    <h2><%= image_tag design['thumbnail_url'] %></h2>
+    <%= link_to 'Remove from Favourites', design, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+<% end %>
+</main>
+
