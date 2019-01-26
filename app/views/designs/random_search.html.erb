@@ -1,0 +1,21 @@
+<main class="container">
+	<h1>Random Design</h1>
+
+	<h2 class="flash-notice"><%= notice %></h2>
+	
+	<p><%= link_to "View My Favourites", designs_path %> | <%= link_to 'Back to Search', new_design_path %></p>
+		<%= form_tag(random_search_designs_path, method: :get) do %>
+	  <%= label_tag(:q, "Click here for another random design:") %>
+	  <%= submit_tag("Random Design") %>
+	<% end %>
+
+	<% @random_search.each do |design| %>  
+	  <h3><%= design['name'] %></h3>
+	  <h5><%= image_tag design['thumbnail_url'] %></h5>
+	  <%= button_to 'Save to Favourites',
+	    designs_path(
+	      design: design.slice('name', 'thumbnail_url') 
+	    ),method: :post %>
+	  </div>
+	<% end %>
+</main>

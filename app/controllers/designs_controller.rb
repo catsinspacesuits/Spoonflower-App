@@ -4,8 +4,9 @@ class DesignsController < ApplicationController
 	end
 
 	def new
+		@search = []
 		# returns an array of hashes
-		@search = SpoonflowerApi.new.find(params[:q])['results']
+    @search = SpoonflowerApi.new.find(params[:q])['results'] unless params[:q].nil?
 	end
 
 	def create
@@ -16,7 +17,7 @@ class DesignsController < ApplicationController
 	    else
 	    	flash[:notice] = 'Design already in Favourites!'
     end
-    redirect_to new_design_path
+    redirect_to designs_path
   end
 
   def destroy
@@ -26,11 +27,10 @@ class DesignsController < ApplicationController
   	redirect_to designs_path
   end
 
-  # searches for a random design
   def random_search
-  	@random = SpoonflowerApi.new.random(rand(1..740579), 1)['results']
+  	@random_search = SpoonflowerApi.new.random(rand(1..740579), 1)['results']
   end
-
+  
   private
 
   def design_params

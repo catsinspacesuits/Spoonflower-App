@@ -1,12 +1,19 @@
 <main class="container">
   <h1>Design Search</h1>
-  <h2 class="flash-notice"><%= notice %></h2>
-  <p><%= link_to "View My Favourites", designs_path %></p>
 
+  <h2 class="flash-notice"><%= notice %></h2>
+
+  <p><%= link_to "View My Favourites", designs_path %> | <%= link_to 'Random Search', random_search_designs_path %></p>
+  <!-- Button to search Spoonflower design names -->
   <%= form_tag(new_design_path, method: :get) do %>
-    <%= label_tag(:q, "Search for:") %>
+    <%= label_tag(:q, "Search all designs:") %>
     <%= text_field_tag(:q) %>
     <%= submit_tag("Search") %>
+  <% end %><br>
+  <!-- Button to return one random design --> 
+  <%= form_tag(random_search_designs_path, method: :get) do %>
+    <%= label_tag(:q, "Inspire me! Click here for a random design:") %>
+    <%= submit_tag("Random Design") %>
   <% end %>
 
   <h2>Search results:</h2>
@@ -16,9 +23,10 @@
     <h3 class="design_name"><%= design['name'] %></h3>
     <h5><%= image_tag design['thumbnail_url'] %></h5>
     <%= button_to 'Save to Favourites',
-          designs_path(
-            design: design.slice('name', 'thumbnail_url') 
-          ),method: :post %>
+      designs_path(
+        design: design.slice('name', 'thumbnail_url') 
+      ),method: :post
+       %>
     </div>
-  <% end %>
-</main>
+  <% end %> <!-- end of design div -->
+</main> 

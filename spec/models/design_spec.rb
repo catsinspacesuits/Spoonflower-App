@@ -20,3 +20,5 @@ RSpec.describe Design, type: :model do
 	end
 end
 
+
+

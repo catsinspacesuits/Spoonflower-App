@@ -8,7 +8,7 @@ class SpoonflowerApi
   def find(name)
     self.class.get("/designs", query: { q: name }).parsed_response
   end
-
+  # Finds a random design
   def random(offset, limit)
     self.class.get("/designs", query: { offset: offset, limit: limit }).parsed_response
   end
