@@ -11,3 +11,23 @@
 .design_name {
 	width: 80%;
 }
+
+.flash-notice {
+	position: absolute;
+	top: 0;
+	left: 35%;
+	opacity: 0;
+  animation-name: FadeOut;
+  animation-duration: 5s;
+}
+
+
+@keyframes FadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

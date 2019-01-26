@@ -4,14 +4,19 @@ class DesignsController < ApplicationController
 	end
 
 	def new
-		# gives an array of hashes
+		# returns an array of hashes
 		@search = SpoonflowerApi.new.find(params[:q])['results']
 	end
 
 	def create
     @design = Design.new(design_params)
     @design.save
-    flash[:notice] = 'Design has been added to favourites!'
+	    if @design.save
+	    	flash[:notice] = 'Design has been added to favourites!'
+	    else
+	    	flash[:notice] = 'Design already in Favourites!'
+    end
+    redirect_to new_design_path
   end
 
   def destroy
